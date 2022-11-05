@@ -1,12 +1,11 @@
-// eslint-disable-next-line no-undef
 module.exports = {
   env: {
     browser: true,
     es2021: true,
   },
   extends: [
-    'eslint:recommended',
     'plugin:react/recommended',
+    'standard-with-typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
@@ -18,5 +17,13 @@ module.exports = {
     project: './tsconfig.json',
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
-  rules: {},
+  rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+    'react/react-in-jsx-scope': 'off',
+  },
 }
