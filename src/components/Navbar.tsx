@@ -86,7 +86,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
   })
 
   return (
-    <Header height={60} mb={120}>
+    <Header height={60}>
       <Container className={classes.header}>
         {/* <MantineLogo size={28} /> */}
         <Group spacing={5} className={classes.links}>
