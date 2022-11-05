@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FC } from 'react'
 import { createStyles, Header, Container, Group, Burger } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Link, useMatch, useResolvedPath } from 'react-router-dom'
@@ -56,33 +56,34 @@ const useStyles = createStyles((theme) => ({
   },
 }))
 
-export type NavbarLinkProps = { link: string; label: string }
-export type NavbarProps = {
+export interface NavbarLinkProps {
+  link: string
+  label: string
+}
+interface NavbarProps {
   links: NavbarLinkProps[]
 }
 
-export default function Navbar({ links }: NavbarProps) {
+const Navbar: FC<NavbarProps> = ({ links }) => {
   const [opened, { toggle }] = useDisclosure(false)
-  const [active, setActive] = useState(links[0].link)
   const { classes, cx } = useStyles()
 
-  const ok = ''
+  const items = links.map((link) => {
+    const resolvedPath = useResolvedPath(link.link)
+    const active = useMatch({ path: resolvedPath.pathname })
 
-  const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={cx(classes.link, {
-        [classes.linkActive]: active === link.link,
-      })}
-      onClick={(event) => {
-        event.preventDefault()
-        setActive(link.link)
-      }}
-    >
-      {link.label}
-    </a>
-  ))
+    return (
+      <Link
+        key={link.label}
+        to={link.link}
+        className={cx(classes.link, {
+          [classes.linkActive]: active,
+        })}
+      >
+        {link.label}
+      </Link>
+    )
+  })
 
   return (
     <Header height={60} mb={120}>
@@ -102,3 +103,5 @@ export default function Navbar({ links }: NavbarProps) {
     </Header>
   )
 }
+
+export default Navbar

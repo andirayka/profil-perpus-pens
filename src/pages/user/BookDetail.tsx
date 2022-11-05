@@ -1,6 +1,6 @@
-import Navbar from '@components/Navbar'
+import { FC } from 'react'
 
-const BookDetail = () => {
+const BookDetail: FC = () => {
   return <div>BookDetail</div>
 }
 
