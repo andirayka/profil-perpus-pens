@@ -57,6 +57,7 @@ const BookListItem: FC<BookListItemProps> = ({ item }) => {
 
   return (
     <Card
+      withBorder
       shadow="sm"
       radius="md"
       className={classes.container}
