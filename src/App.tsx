@@ -2,11 +2,12 @@ import Navbar from '@/components/Navbar'
 import Activity from '@/pages/user/Activity'
 import Borrowing from '@/pages/user/Borrowing'
 import Home from '@/pages/user/Home'
-import { navbarLink } from '@/utils/constants'
+import { footerLink, navbarLink } from '@/utils/constants'
 import { FC } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Container, MantineProvider } from '@mantine/core'
 import BookDetail from '@/pages/user/BookDetail'
+import Footer from '@/components/Footer'
 
 const App: FC = () => {
   return (
@@ -22,6 +23,8 @@ const App: FC = () => {
             <Route path="/buku/:slug" element={<BookDetail />} />
           </Routes>
         </Container>
+
+        <Footer data={footerLink} />
       </MantineProvider>
     </BrowserRouter>
   )
