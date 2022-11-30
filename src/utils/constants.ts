@@ -5,6 +5,7 @@ export const navbarLink: NavbarLinkProps[] = [
   { link: '/', label: 'Koleksi Buku' },
   { link: '/jadwal-kegiatan', label: 'Kegiatan' },
   { link: '/peminjaman', label: 'Peminjaman' },
+  { link: '/admin/login', label: 'Login' },
 ]
 
 export const footerLink: FooterDataProps[] = [
@@ -29,3 +30,7 @@ export const footerLink: FooterDataProps[] = [
     ],
   },
 ]
+
+export const lsKeys = {
+  isLoggedIn: 'isLoggedIn',
+}

@@ -38,16 +38,14 @@ const useStyles = createStyles((t) => ({
   },
 }))
 
-interface BookListItemProps {
-  item: {
-    name: string
-    author: string
-    category: string
-    image: string
-    slug: string
-  }
+export interface BookListItemProps {
+  title: string
+  author: string
+  category: string
+  image: string
+  slug: string
 }
-const BookListItem: FC<BookListItemProps> = ({ item }) => {
+const BookListItem: FC<{ item: BookListItemProps }> = ({ item }) => {
   const { classes } = useStyles()
   const navigate = useNavigate()
 
@@ -70,7 +68,7 @@ const BookListItem: FC<BookListItemProps> = ({ item }) => {
 
       <Text className={classes.categoryText}>{item.category}</Text>
       <Text lineClamp={2} className={classes.nameText}>
-        {item.name}
+        {item.title}
       </Text>
       <Text className={classes.authorText}>{item.author}</Text>
     </Card>

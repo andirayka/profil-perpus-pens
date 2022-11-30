@@ -1,7 +1,18 @@
 import { FC } from 'react'
-import { createStyles, Header, Container, Group, Burger } from '@mantine/core'
+import {
+  createStyles,
+  Header,
+  Container,
+  Group,
+  Burger,
+  Image,
+  Autocomplete,
+  Center,
+} from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Link, useMatch, useResolvedPath } from 'react-router-dom'
+import { LogoPens } from '@/assets'
+import { TbSearch } from 'react-icons/tb'
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -9,6 +20,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '100%',
+    // backgroundColor: 'pink',
   },
 
   links: {
@@ -88,7 +100,16 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
   return (
     <Header height={60}>
       <Container className={classes.header}>
-        {/* <MantineLogo size={28} /> */}
+        <Center>
+          <Image width={50} src={LogoPens} />
+          <Autocomplete
+            ml="lg"
+            style={{ width: 400 }}
+            placeholder="Cari nama Buku atau Autor"
+            icon={<TbSearch size={16} />}
+            data={['React', 'Angular', 'Svelte', 'Vue']}
+          />
+        </Center>
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
