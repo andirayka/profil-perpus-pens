@@ -25,8 +25,8 @@ const Login: FC = () => {
       return
     }
 
-    navigate('dashboard')
-    localStorage.setItem(lsKeys.isLoggedIn, '1')
+    navigate('/admin/dashboard')
+    // localStorage.setItem(lsKeys.isLoggedIn, '1')
   }
 
   return (
@@ -46,14 +46,14 @@ const Login: FC = () => {
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <TextInput
           label="Email"
-          placeholder="you@mantine.dev"
+          placeholder="Masukkan email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <PasswordInput
           label="Password"
-          placeholder="Your password"
+          placeholder="Masukkan password"
           required
           mt="md"
           value={password}

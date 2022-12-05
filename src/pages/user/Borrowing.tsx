@@ -1,5 +1,12 @@
 import { JadwalContoh } from '@/assets'
-import { Button, Center, Container, createStyles, Text } from '@mantine/core'
+import {
+  Button,
+  Center,
+  Container,
+  createStyles,
+  Text,
+  Title,
+} from '@mantine/core'
 import { FC, useState } from 'react'
 import { Document, Page } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
@@ -17,40 +24,57 @@ const Borrowing: FC = () => {
   }
 
   return (
-    <Center>
-      <div>
+    <Container
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Title>Profil Perpustakaan</Title>
+      <Center>
         <Document file={JadwalContoh} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
-        <Text>
-          Halaman {pageNumber} dari {numPages}
-        </Text>
         <Container
           style={{
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
         >
-          <Button
-            fullWidth
-            mt="xl"
-            onClick={() => setPageNumber(pageNumber - 1)}
+          <Text>
+            Halaman {pageNumber} dari {numPages}
+          </Text>
+          <Container
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
           >
-            Sebelumnya
-          </Button>
-          <div style={{ width: 20 }} />
-          <Button
-            fullWidth
-            mt="xl"
-            onClick={() => setPageNumber(pageNumber + 1)}
-          >
-            Selanjutnya
-          </Button>
+            <Button
+              fullWidth
+              mt="xl"
+              onClick={() => setPageNumber(pageNumber - 1)}
+            >
+              Sebelumnya
+            </Button>
+            <div style={{ width: 20 }} />
+            <Button
+              fullWidth
+              mt="xl"
+              onClick={() => setPageNumber(pageNumber + 1)}
+            >
+              Selanjutnya
+            </Button>
+          </Container>
         </Container>
-      </div>
-    </Center>
+      </Center>
+    </Container>
   )
 }
 

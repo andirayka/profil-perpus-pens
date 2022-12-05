@@ -1,6 +1,8 @@
 import { FC, useState } from 'react'
-import { createStyles, Navbar, Group, Code } from '@mantine/core'
+import { createStyles, Navbar, Group, Code, Image, Text } from '@mantine/core'
 import { TbBellRinging, TbSwitchHorizontal, TbLogout } from 'react-icons/tb'
+import { useNavigate } from 'react-router-dom'
+import { LogoPens } from '@/assets'
 
 const useStyles = createStyles((theme, _params, getRef) => {
   const icon = getRef('icon')
@@ -80,11 +82,14 @@ const useStyles = createStyles((theme, _params, getRef) => {
   }
 })
 
-const data = [{ link: '', label: 'Notifications', icon: TbBellRinging }]
+const data = [
+  { link: '/admin/dashboard', label: 'Dashboard', icon: TbBellRinging },
+]
 
-const NavbarSimple: FC = () => {
+const SideBar: FC = () => {
   const { classes, cx } = useStyles()
-  const [active, setActive] = useState('Billing')
+  const [active, setActive] = useState('Dashboard')
+  const navigate = useNavigate()
 
   const links = data.map((item) => (
     <a
@@ -104,11 +109,12 @@ const NavbarSimple: FC = () => {
   ))
 
   return (
-    <Navbar height={700} width={{ sm: 300 }} p="md">
+    <Navbar height={900} width={{ sm: 300 }} p="md">
       <Navbar.Section grow>
         <Group className={classes.header} position="apart">
-          {/* <MantineLogo size={28} /> */}
-          <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
+          <Image width={50} src={LogoPens} />
+          <Text>Admin PerpusPENS</Text>
+          <Code sx={{ fontWeight: 700 }}>1.0</Code>
         </Group>
         {links}
       </Navbar.Section>
@@ -117,7 +123,10 @@ const NavbarSimple: FC = () => {
         <a
           href="#"
           className={classes.link}
-          onClick={(event) => event.preventDefault()}
+          onClick={(event) => {
+            event.preventDefault()
+            navigate('/admin/login')
+          }}
         >
           <TbSwitchHorizontal className={classes.linkIcon} />
           <span>Change account</span>
@@ -126,7 +135,10 @@ const NavbarSimple: FC = () => {
         <a
           href="#"
           className={classes.link}
-          onClick={(event) => event.preventDefault()}
+          onClick={(event) => {
+            event.preventDefault()
+            navigate('/')
+          }}
         >
           <TbLogout className={classes.linkIcon} />
           <span>Logout</span>
@@ -136,4 +148,4 @@ const NavbarSimple: FC = () => {
   )
 }
 
-export default NavbarSimple
+export default SideBar

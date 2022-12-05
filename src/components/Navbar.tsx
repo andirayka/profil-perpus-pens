@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import {
   createStyles,
   Header,
@@ -10,7 +10,7 @@ import {
   Center,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { Link, useMatch, useResolvedPath } from 'react-router-dom'
+import { Link, useMatch, useNavigate, useResolvedPath } from 'react-router-dom'
 import { LogoPens } from '@/assets'
 import { TbSearch } from 'react-icons/tb'
 
@@ -79,6 +79,12 @@ interface NavbarProps {
 const Navbar: FC<NavbarProps> = ({ links }) => {
   const [opened, { toggle }] = useDisclosure(false)
   const { classes, cx } = useStyles()
+  const navigate = useNavigate()
+  const [search, setSearch] = useState('')
+
+  const onPressHome = (): void => {
+    navigate('/')
+  }
 
   const items = links.map((link) => {
     const resolvedPath = useResolvedPath(link.link)
@@ -101,13 +107,24 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
     <Header height={60}>
       <Container className={classes.header}>
         <Center>
-          <Image width={50} src={LogoPens} />
+          <Image
+            width={50}
+            src={LogoPens}
+            onClick={onPressHome}
+            style={{ cursor: 'pointer' }}
+          />
           <Autocomplete
             ml="lg"
+            value={search}
+            onChange={setSearch}
             style={{ width: 400 }}
-            placeholder="Cari nama Buku atau Autor"
+            placeholder="Cari nama buku atau pengarang"
             icon={<TbSearch size={16} />}
-            data={['React', 'Angular', 'Svelte', 'Vue']}
+            data={
+              search.length > 0
+                ? ['React', 'Angular', 'Svelte', 'Vue', 'Node Js']
+                : []
+            }
           />
         </Center>
         <Group spacing={5} className={classes.links}>

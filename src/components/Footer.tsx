@@ -147,6 +147,9 @@ const Footer: FC<FooterProps> = ({ data }) => {
           <Text size="xs" color="dimmed" className={classes.description}>
             Profil Perpustakaan PENS
           </Text>
+
+          <Text>Jumlah pengujung hari ini</Text>
+          <Text>4</Text>
         </div>
         <div className={classes.groups}>{groups}</div>
       </Container>

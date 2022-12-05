@@ -13,7 +13,7 @@ const BookDetailInfo: FC<{ data: BookListItemProps }> = ({ data }) => {
   const { classes } = useStyles()
 
   return (
-    <Stack>
+    <Stack style={{ maxWidth: 500 }} ml="lg">
       <Stack>
         <Text>{data.author}</Text>
         <Text>{data.title}</Text>
