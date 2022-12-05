@@ -76,7 +76,7 @@ const MainDashboard: FC = () => {
               return (
                 <FeedbackItem
                   key={i}
-                  title="Ahmad Kurniawan"
+                  title="ahmad.kurniawan@gmail.com"
                   message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
                 />
               )
