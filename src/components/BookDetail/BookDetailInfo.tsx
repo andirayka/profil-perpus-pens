@@ -63,7 +63,8 @@ const BookDetailInfo: FC<{ data: BookListItemProps }> = ({ data }) => {
         </Tabs.Panel>
 
         <Tabs.Panel value="detail" pt="xs">
-          Messages tab content
+          <Text>Kategori: Informatika</Text>
+          <Text>Tags: Software, engineering</Text>
         </Tabs.Panel>
       </Tabs>
     </Stack>

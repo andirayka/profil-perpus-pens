@@ -1,13 +1,5 @@
-import SideBar from '@/components/Sidebar'
 import React, { FC } from 'react'
-import {
-  createStyles,
-  Text,
-  Container,
-  ActionIcon,
-  Group,
-  ScrollArea,
-} from '@mantine/core'
+import { createStyles, Text, Container, Group, ScrollArea } from '@mantine/core'
 import DashboardItem from '@/components/Dashboard/DashboardItem'
 import FeedbackItem from '@/components/Dashboard/FeedbackItem'
 import {

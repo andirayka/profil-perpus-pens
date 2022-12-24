@@ -1,6 +1,6 @@
 import BookDetailCover from '@/components/BookDetail/BookDetailCover'
 import BookDetailInfo from '@/components/BookDetail/BookDetailInfo'
-import { Group } from '@mantine/core'
+import { Anchor, Breadcrumbs, Group } from '@mantine/core'
 import { FC } from 'react'
 
 const data = {
@@ -12,12 +12,23 @@ const data = {
   category: 'Computer Science',
   image: 'https://picsum.photos/120/180',
 }
+const items = [
+  { title: 'Koleksi Buku', href: '/' },
+  { title: data.slug, href: `/buku/${data.slug}` },
+].map((item, index) => (
+  <Anchor href={item.href} key={index}>
+    {item.title}
+  </Anchor>
+))
 const BookDetail: FC = () => {
   return (
-    <Group>
-      <BookDetailCover image="https://picsum.photos/420/630" />
-      <BookDetailInfo data={data} />
-    </Group>
+    <>
+      <Breadcrumbs>{items}</Breadcrumbs>
+      <Group mt="lg">
+        <BookDetailCover image="https://picsum.photos/420/630" />
+        <BookDetailInfo data={data} />
+      </Group>
+    </>
   )
 }
 

@@ -1,12 +1,5 @@
 import React, { FC } from 'react'
-import {
-  createStyles,
-  Text,
-  Container,
-  ActionIcon,
-  Group,
-  Card,
-} from '@mantine/core'
+import { createStyles, Card } from '@mantine/core'
 
 const useStyles = createStyles((t) => ({
   container: {
