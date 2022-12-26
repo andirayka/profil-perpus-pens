@@ -18,6 +18,8 @@
     "@mantine/dropzone": "^5.6.0",
     "@mantine/form": "^5.6.0",
     "@mantine/hooks": "^5.6.0",
+    "@mantine/notifications": "^5.9.5",
+    "axios": "^1.2.1",
     "chart.js": "^4.0.1",
     "dayjs": "^1.11.6",
     "faker": "^6.6.6",

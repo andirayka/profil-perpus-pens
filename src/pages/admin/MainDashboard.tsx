@@ -39,7 +39,12 @@ const data = {
 }
 
 const useStyles = createStyles((t) => ({
-  container: {},
+  container: {
+    backgroundColor: t.colors.gray[0],
+    // marginRight: t.spacing.lg,
+    padding: t.spacing.lg,
+    borderRadius: t.spacing.md,
+  },
   itemTitle: {
     fontSize: t.fontSizes.lg,
     color: t.colors.gray[7],
@@ -55,7 +60,7 @@ const MainDashboard: FC = () => {
   const { classes } = useStyles()
 
   return (
-    <Container m={0} p={0}>
+    <Container className={classes.container}>
       <Group>
         <DashboardItem height={300}>
           <Text className={classes.itemTitle}>Jumlah Buku</Text>

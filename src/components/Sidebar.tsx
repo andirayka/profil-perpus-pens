@@ -1,7 +1,12 @@
 import { FC, useState } from 'react'
 import { createStyles, Navbar, Group, Code, Image, Text } from '@mantine/core'
-import { TbBellRinging, TbSwitchHorizontal, TbLogout } from 'react-icons/tb'
-import { useNavigate } from 'react-router-dom'
+import {
+  TbBellRinging,
+  TbSwitchHorizontal,
+  TbLogout,
+  TbBook,
+} from 'react-icons/tb'
+import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom'
 import { LogoPens } from '@/assets'
 
 const useStyles = createStyles((theme, _params, getRef) => {
@@ -84,32 +89,37 @@ const useStyles = createStyles((theme, _params, getRef) => {
 
 const data = [
   { link: '/admin/dashboard', label: 'Dashboard', icon: TbBellRinging },
+  { link: '/admin/books', label: 'Buku', icon: TbBook },
 ]
 
 const SideBar: FC = () => {
   const { classes, cx } = useStyles()
-  const [active, setActive] = useState('Dashboard')
   const navigate = useNavigate()
 
-  const links = data.map((item) => (
-    <a
-      className={cx(classes.link, {
-        [classes.linkActive]: item.label === active,
-      })}
-      href={item.link}
-      key={item.label}
-      onClick={(event) => {
-        event.preventDefault()
-        setActive(item.label)
-      }}
-    >
-      <item.icon className={classes.linkIcon} />
-      <span>{item.label}</span>
-    </a>
-  ))
+  const links = data.map((item) => {
+    const resolvedPath = useResolvedPath(item.link)
+    const active = useMatch({ path: resolvedPath.pathname })
+
+    return (
+      <a
+        className={cx(classes.link, {
+          [classes.linkActive]: active,
+        })}
+        href={item.link}
+        key={item.label}
+        onClick={(event) => {
+          event.preventDefault()
+          navigate(item.link)
+        }}
+      >
+        <item.icon className={classes.linkIcon} />
+        <span>{item.label}</span>
+      </a>
+    )
+  })
 
   return (
-    <Navbar height={900} width={{ sm: 300 }} p="md">
+    <Navbar style={{ height: '100vh' }} width={{ sm: 300 }} p="md">
       <Navbar.Section grow>
         <Group className={classes.header} position="apart">
           <Image width={50} src={LogoPens} />
