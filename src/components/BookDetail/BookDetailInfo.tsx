@@ -12,6 +12,7 @@ const useStyles = createStyles((t) => ({
 
 const BookDetailInfo: FC<{ data: BookListItemProps }> = ({ data }) => {
   const { classes } = useStyles()
+  console.log(data)
 
   return (
     <Stack style={{ maxWidth: 500 }} ml="lg">

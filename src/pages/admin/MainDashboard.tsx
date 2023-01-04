@@ -27,6 +27,17 @@ const options = {
   },
 }
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+const Januari = ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4']
+const dataJanuari = {
+  labels,
+  datasets: [
+    {
+      label: 'Jumlah Pengunjung Bulan Januari',
+      data: [27, 100, 340, 78, 29, 238, 172],
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    },
+  ],
+}
 const data = {
   labels,
   datasets: [
