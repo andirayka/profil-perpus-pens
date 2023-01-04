@@ -1,5 +1,6 @@
 import LogoPens from './Logo_PENS.png'
-import PdfSample from './pdf_sample.pdf'
-import JadwalContoh from './jadwal_contoh.pdf'
+import StrukturOrganisasi from './STRUKTUR.jpg'
+import Kalender from './Kalender.jpeg'
+import Peminjaman from './Peminjaman.jpeg'
 
-export { LogoPens, JadwalContoh, PdfSample }
+export { LogoPens, StrukturOrganisasi, Kalender, Peminjaman }

@@ -1,4 +1,4 @@
-import { JadwalContoh } from '@/assets'
+import { Kalender } from '@/assets'
 import {
   Button,
   Center,
@@ -11,6 +11,8 @@ import { FC, useState } from 'react'
 import { Document, Page } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
+import InnerImageZoom from 'react-inner-image-zoom'
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css'
 
 const useStyles = createStyles((t) => ({}))
 
@@ -32,12 +34,15 @@ const Activity: FC = () => {
         alignItems: 'center',
       }}
     >
-      <Title>Jadwal Kegiatan Perpustakaan</Title>
+      <Title>Jadwal Kalender Perpustakaan</Title>
       <Center>
-        <Document file={JadwalContoh} onLoadSuccess={onDocumentLoadSuccess}>
-          <Page pageNumber={pageNumber} />
-        </Document>
-        <Container
+        <InnerImageZoom
+          // className={classes.image}
+          src={Kalender}
+          zoomType="hover"
+          zoomPreload={true}
+        />
+        {/* <Container
           style={{
             display: 'flex',
             flexDirection: 'column',
@@ -72,7 +77,7 @@ const Activity: FC = () => {
               Selanjutnya
             </Button>
           </Container>
-        </Container>
+        </Container> */}
       </Center>
     </Container>
   )

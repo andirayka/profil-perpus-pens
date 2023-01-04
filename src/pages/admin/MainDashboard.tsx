@@ -64,7 +64,7 @@ const MainDashboard: FC = () => {
       <Group>
         <DashboardItem height={300}>
           <Text className={classes.itemTitle}>Jumlah Buku</Text>
-          <Text className={classes.bookCount}>40</Text>
+          <Text className={classes.bookCount}>2</Text>
         </DashboardItem>
         <DashboardItem height={300}>
           <Text className={classes.itemTitle}>Pesan Pengguna</Text>
@@ -74,7 +74,7 @@ const MainDashboard: FC = () => {
                 <FeedbackItem
                   key={i}
                   title="ahmad.kurniawan@gmail.com"
-                  message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+                  message="Pesan kepada petugas perpustakaan"
                 />
               )
             })}

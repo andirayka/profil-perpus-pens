@@ -19,6 +19,7 @@ import Login from '@/pages/admin/Login'
 import MainDashboard from '@/pages/admin/MainDashboard'
 import SideBar from '@/components/Sidebar'
 import BooksDashboard from '@/pages/admin/BooksDashboard'
+import EditBook from '@/pages/admin/EditBook'
 
 const useStyles = createStyles((t) => ({
   adminContentContainer: {
@@ -58,6 +59,10 @@ const App: FC = () => {
             <Route
               path="/admin/books"
               element={<AdminContainer element={<BooksDashboard />} />}
+            />
+            <Route
+              path="/admin/books/add"
+              element={<AdminContainer element={<EditBook />} />}
             />
           </Routes>
         </NotificationsProvider>

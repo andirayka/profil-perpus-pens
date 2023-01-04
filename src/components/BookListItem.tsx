@@ -50,7 +50,7 @@ const BookListItem: FC<{ item: BookListItemProps }> = ({ item }) => {
   const navigate = useNavigate()
 
   const goToDetail = (): void => {
-    navigate(`buku/${item.slug}`)
+    navigate(`buku/${item.slug}`, { state: { item } })
   }
 
   return (
@@ -63,7 +63,7 @@ const BookListItem: FC<{ item: BookListItemProps }> = ({ item }) => {
     >
       <Center>
         <div className={classes.topBgColor} />
-        <Image width={120} height={180} src={item.image} />
+        <Image width={120} height={180} src={'https://picsum.photos/120/180'} />
       </Center>
 
       <Text className={classes.categoryText}>{item.category}</Text>

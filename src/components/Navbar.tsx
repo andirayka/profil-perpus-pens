@@ -8,6 +8,7 @@ import {
   Image,
   Autocomplete,
   Center,
+  MultiSelect,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Link, useMatch, useNavigate, useResolvedPath } from 'react-router-dom'
@@ -102,7 +103,12 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
       </Link>
     )
   })
-
+  const data = [
+    { value: 'react', label: 'React' },
+    { value: 'svelte', label: 'Svelte' },
+    { value: 'vue', label: 'Vue' },
+    { value: 'Informatika', label: 'Informatika' },
+  ]
   return (
     <Header height={60}>
       <Container className={classes.header}>
@@ -126,6 +132,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                 : []
             }
           />
+          {/* <MultiSelect data={data} placeholder="Pilih Kategori" /> */}
         </Center>
         <Group spacing={5} className={classes.links}>
           {items}

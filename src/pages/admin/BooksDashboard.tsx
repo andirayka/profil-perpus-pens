@@ -161,10 +161,10 @@ const BooksDashboard = (): React.ReactElement => {
         .get('books')
         .then((res) => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const newData = res.data.data.map((item: any) => {
-            return { ...item, tags: item.tags.join(', ') }
-          })
-          setSortedData(newData)
+          // const newData = res.data.data.map((item: any) => {
+          //   return { ...item, tags: item.tags.join(', ') }
+          // })
+          setSortedData(res.data.data)
         })
         .catch((err) => console.log(err))
         .finally(() => {

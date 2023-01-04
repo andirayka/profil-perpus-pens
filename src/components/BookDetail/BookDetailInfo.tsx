@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Spoiler, createStyles, Stack, Text, Tabs } from '@mantine/core'
 import { BookListItemProps } from '@/components/BookListItem'
+import { useLocation } from 'react-router-dom'
 
 const useStyles = createStyles((t) => ({
   image: {
@@ -31,40 +32,14 @@ const BookDetailInfo: FC<{ data: BookListItemProps }> = ({ data }) => {
             showLabel="Baca Selengkapnya"
             hideLabel="Tutup"
           >
-            <Text>
-              Listrik padam di seluruh Jawa dan Bali secara misterius! Ancaman
-              nyata kekuatan baru yang hendak menaklukkan Nusantara.
-            </Text>
-            <Text>
-              Saat yang sama, empat sahabat mendarat di Sumba, hanya untuk
-              mendapati nasib ratusan juta manusia ada di tangan mereka! Empat
-              mahasiswa ekonomi ini, harus bertarung melawan pasukan berkuda
-              yang bisa melontarkan listrik! Semua dipersulit oleh seorang
-              buronan tingkat tinggi bertopeng pahlawan yang punya rencana
-              mengerikan.
-            </Text>
-            <Text>
-              Saat yang sama, empat sahabat mendarat di Sumba, hanya untuk
-              mendapati nasib ratusan juta manusia ada di tangan mereka! Empat
-              mahasiswa ekonomi ini, harus bertarung melawan pasukan berkuda
-              yang bisa melontarkan listrik! Semua dipersulit oleh seorang
-              buronan tingkat tinggi bertopeng pahlawan yang punya rencana
-              mengerikan.
-            </Text>
-            <Text>
-              Saat yang sama, empat sahabat mendarat di Sumba, hanya untuk
-              mendapati nasib ratusan juta manusia ada di tangan mereka! Empat
-              mahasiswa ekonomi ini, harus bertarung melawan pasukan berkuda
-              yang bisa melontarkan listrik! Semua dipersulit oleh seorang
-              buronan tingkat tinggi bertopeng pahlawan yang punya rencana
-              mengerikan.
-            </Text>
+            <Text>{data?.description}</Text>
           </Spoiler>
         </Tabs.Panel>
 
         <Tabs.Panel value="detail" pt="xs">
-          <Text>Kategori: Informatika</Text>
-          <Text>Tags: Software, engineering</Text>
+          <Text>Kategori: {data?.tags}</Text>
+          <Text>ISBN: {data?.isbn}</Text>
+          <Text>Penerbit: {data?.publisher}</Text>
         </Tabs.Panel>
       </Tabs>
     </Stack>

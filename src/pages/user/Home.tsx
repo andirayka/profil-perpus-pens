@@ -1,6 +1,7 @@
 import BookListItem from '@/components/BookListItem'
+import api from '@/utils/api'
 import { Group, Text, Title } from '@mantine/core'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 const data = Array(12).fill({
   uuid: 'bismillah_UUID',
@@ -11,6 +12,18 @@ const data = Array(12).fill({
   image: 'https://picsum.photos/120/180',
 })
 const Home: FC = () => {
+  const [books, setBooks] = useState([])
+
+  useEffect(() => {
+    api
+      .get('books')
+      .then((res) => {
+        console.log(res.data.data)
+        setBooks(res.data.data)
+      })
+      .catch((err) => console.log(err))
+  }, [])
+
   return (
     <Group spacing={40}>
       <Title>PERPUSTAKAAN POLITEKNIK ELEKTRONIKA NEGERI SURABAYA (PENS)</Title>
@@ -22,7 +35,7 @@ const Home: FC = () => {
         mengajar. Perpustakaan PENS sendiri bertempat di dalam area PENS.
       </Text>
 
-      {data.map((item, i) => {
+      {books.map((item, i) => {
         return <BookListItem key={i} item={item} />
       })}
     </Group>
