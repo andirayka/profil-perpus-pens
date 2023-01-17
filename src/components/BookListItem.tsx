@@ -39,10 +39,10 @@ const useStyles = createStyles((t) => ({
 }))
 
 export interface BookListItemProps {
-  description: any
-  isbn: any
-  publisher: any
-  tags: any
+  description: string
+  isbn: string
+  publisher: string
+  tags: string
   title: string
   author: string
   category: string

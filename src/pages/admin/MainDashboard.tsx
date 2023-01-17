@@ -33,7 +33,7 @@ const dataJanuari = {
   datasets: [
     {
       label: 'Jumlah Pengunjung Bulan Januari',
-      data: [27, 100, 340, 78, 29, 238, 172],
+      data: [0, 1, 2, 5, 11, 23, 22],
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
   ],

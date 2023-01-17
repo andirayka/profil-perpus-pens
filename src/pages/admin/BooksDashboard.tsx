@@ -200,7 +200,11 @@ const BooksDashboard = (): React.ReactElement => {
         <Button
           style={{ marginRight: 8 }}
           onClick={() => {
-            navigate('add')
+            navigate('add', {
+              state: {
+                data: row,
+              },
+            })
           }}
         >
           <TbEdit size={20} color="black" />
@@ -299,36 +303,38 @@ const BooksDashboard = (): React.ReactElement => {
             p={0}
           >
             <Table horizontalSpacing="md" verticalSpacing="xs">
-              <tr>
-                <td>Judul</td>
-                <td>:</td>
-                <td style={{ width: '80%' }}>{deleteModalData.title}</td>
-              </tr>
-              <tr>
-                <td>Penulis</td>
-                <td>:</td>
-                <td style={{ width: '80%' }}>{deleteModalData.author}</td>
-              </tr>
-              <tr>
-                <td>Penerbit</td>
-                <td>:</td>
-                <td style={{ width: '80%' }}>{deleteModalData.publisher}</td>
-              </tr>
-              <tr>
-                <td>Tags</td>
-                <td>:</td>
-                <td style={{ width: '80%' }}>{deleteModalData.tags}</td>
-              </tr>
-              <tr>
-                <td>ISBN</td>
-                <td>:</td>
-                <td style={{ width: '80%' }}>{deleteModalData.isbn}</td>
-              </tr>
-              {/* <tr>
+              <tbody>
+                <tr>
+                  <td>Judul</td>
+                  <td>:</td>
+                  <td style={{ width: '80%' }}>{deleteModalData.title}</td>
+                </tr>
+                <tr>
+                  <td>Penulis</td>
+                  <td>:</td>
+                  <td style={{ width: '80%' }}>{deleteModalData.author}</td>
+                </tr>
+                <tr>
+                  <td>Penerbit</td>
+                  <td>:</td>
+                  <td style={{ width: '80%' }}>{deleteModalData.publisher}</td>
+                </tr>
+                <tr>
+                  <td>Tags</td>
+                  <td>:</td>
+                  <td style={{ width: '80%' }}>{deleteModalData.tags}</td>
+                </tr>
+                <tr>
+                  <td>ISBN</td>
+                  <td>:</td>
+                  <td style={{ width: '80%' }}>{deleteModalData.isbn}</td>
+                </tr>
+                {/* <tr>
                 <td >Deskripsi</td>
                 <td >:</td>
                 <td style={{ width: '80%' }}>{deleteModalData.description}</td>
               </tr> */}
+              </tbody>
             </Table>
             <Button fullWidth color="red" onClick={deleteBook}>
               Hapus Buku

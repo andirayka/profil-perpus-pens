@@ -14,16 +14,26 @@ import {
 import { TbUpload, TbX, TbPhoto } from 'react-icons/tb'
 import { Dropzone, FileWithPath, IMAGE_MIME_TYPE } from '@mantine/dropzone'
 import React, { FC, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import InnerImageZoom from 'react-inner-image-zoom'
+import {
+  showErrorNotification,
+  showSuccessNotification,
+} from '@/utils/notification'
 
 const EditBook: FC = () => {
-  const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
-  const [description, setDescription] = useState('')
-  const [publisher, setPublisher] = useState('')
-  const [isbn, setIsbn] = useState('')
-  const [tags, setTags] = useState('')
-  const [files, setFiles] = useState<FileWithPath[]>([])
+  const { state } = useLocation()
+  const data = state?.data
+  const [title, setTitle] = useState(data != null ? data.title : '')
+  const [author, setAuthor] = useState(data != null ? data.author : '')
+  const [description, setDescription] = useState(
+    data != null ? data.description : ''
+  )
+  const [publisher, setPublisher] = useState(data != null ? data.publisher : '')
+  const [isbn, setIsbn] = useState(data != null ? data.isbn : '')
+  const [tags, setTags] = useState(data != null ? data.tags : '')
+  const [images, setImages] = useState<FileWithPath[]>([])
+  // const [imgBase64, setImgBase64] = useState<null | string | ArrayBuffer>('')
   const [loadingTitle, setLoadingTitle] = useState(false)
   const theme = useMantineTheme()
   const navigate = useNavigate()
@@ -43,39 +53,62 @@ const EditBook: FC = () => {
   // }, [title])
 
   const submit = (): void => {
-    api
-      .post('books', {
-        title,
-        author,
-        description,
-        publisher,
-        isbn,
-        tags,
-        cover: 'test',
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    const url = data != null ? `books/${data.id}` : 'books'
+    const callApi = data != null ? api.put : api.post
+    callApi(url, {
+      id: data?.id,
+      title,
+      author,
+      description,
+      publisher,
+      isbn,
+      tags,
+      cover: 'imgBase64',
+    })
+      .then((res) => {
+        showSuccessNotification(res)
+        navigate(`/admin/books`)
       })
-      .then(console.log)
-      .catch(console.log)
-      .finally(() => {
-        navigate(`admin/books`)
+      .catch((err) => {
+        showErrorNotification(err)
       })
   }
 
-  const previews = files.map((file, index) => {
+  const previews = images.map((file, index) => {
+    // const reader = new FileReader()
+    // reader.readAsDataURL(file)
+    // reader.onload = function () {
+    //   console.log(reader.result)
+    //   console.log(typeof reader.result)
+    //   // setImgBase64(reader.result)
+    // }
+
     const imageUrl = URL.createObjectURL(file)
     return (
-      <Image
+      <InnerImageZoom
         key={index}
+        // className={classes.image}
+        src={imageUrl}
+        zoomType="hover"
+        hideHint
+        zoomPreload={true}
         width={120}
         height={180}
-        src={imageUrl}
-        imageProps={{ onLoad: () => URL.revokeObjectURL(imageUrl) }}
       />
+      // <Image
+      //   key={index}
+      //   width={120}
+      //   height={180}
+      //   src={imageUrl}
+      //   imageProps={{ onLoad: () => URL.revokeObjectURL(imageUrl) }}
+      // />
     )
   })
 
   return (
     <div>
-      <Title order={1}>Tambah Buku</Title>
+      <Title order={1}>{data != null ? 'Ubah' : 'Tambah'} Buku</Title>
       <TextInput
         value={title}
         onChange={(event) => setTitle(event.currentTarget.value)}
@@ -91,6 +124,7 @@ const EditBook: FC = () => {
       />
       <Textarea
         value={description}
+        autosize
         onChange={(event) => setDescription(event.currentTarget.value)}
         label="Deskripsi Buku"
         placeholder="Deskripsi buku..."
@@ -116,11 +150,11 @@ const EditBook: FC = () => {
       <Text style={{ marginTop: 20, marginBottom: 4 }}>Unggah Cover Buku</Text>
       {previews}
       <Dropzone
-        onDrop={setFiles}
+        onDrop={setImages}
         onReject={(files) => console.log('rejected files', files)}
-        maxSize={3 * 1024 ** 2}
+        maxSize={2 * 1024 ** 2} // 2MB
+        multiple={false}
         accept={IMAGE_MIME_TYPE}
-        // {...DropzoneProps}
       >
         <Group
           position="center"

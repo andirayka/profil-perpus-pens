@@ -1,19 +1,8 @@
 import { FC } from 'react'
-import { Spoiler, createStyles, Stack, Text, Tabs } from '@mantine/core'
+import { Spoiler, Stack, Text, Tabs } from '@mantine/core'
 import { BookListItemProps } from '@/components/BookListItem'
-import { useLocation } from 'react-router-dom'
-
-const useStyles = createStyles((t) => ({
-  image: {
-    width: 240,
-    height: 360,
-  },
-}))
 
 const BookDetailInfo: FC<{ data: BookListItemProps }> = ({ data }) => {
-  const { classes } = useStyles()
-  console.log(data)
-
   return (
     <Stack style={{ maxWidth: 500 }} ml="lg">
       <Stack>
