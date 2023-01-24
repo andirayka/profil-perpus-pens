@@ -67,7 +67,11 @@ const BookListItem: FC<{ item: BookListItemProps }> = ({ item }) => {
     >
       <Center>
         <div className={classes.topBgColor} />
-        <Image width={120} height={180} src={'https://picsum.photos/120/180'} />
+        <Image
+          width={120}
+          height={180}
+          src={'https://i.postimg.cc/L66K9jDn/13803342-5362840.jpg'}
+        />
       </Center>
 
       <Text className={classes.categoryText}>{item.category}</Text>

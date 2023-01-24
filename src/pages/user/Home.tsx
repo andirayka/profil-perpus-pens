@@ -1,33 +1,22 @@
 import BookListItem from '@/components/BookListItem'
-import api from '@/utils/api'
+import { BookContext } from '@/context/BookContext'
 import { Group, Text, Title } from '@mantine/core'
-import { FC, useEffect, useState } from 'react'
+import { FC, useContext, useEffect } from 'react'
 
-const data = Array(12).fill({
-  uuid: 'bismillah_UUID',
-  slug: 'ini-slug-buku',
-  name: 'Never Split the Difference: Negotiating As If Your Life Depended On It',
-  author: 'Chirss Voss',
-  category: 'Computer Science',
-  image: 'https://picsum.photos/120/180',
-})
 const Home: FC = () => {
-  const [books, setBooks] = useState([])
+  const {
+    state: { books, bookKeyword },
+    getBooks,
+  } = useContext(BookContext)
 
   useEffect(() => {
-    api
-      .get('books')
-      .then((res) => {
-        console.log(res.data.data)
-        setBooks(res.data.data)
-      })
-      .catch((err) => console.log(err))
+    void getBooks()
   }, [])
 
   return (
-    <Group spacing={40}>
+    <div>
       <Title>PERPUSTAKAAN POLITEKNIK ELEKTRONIKA NEGERI SURABAYA (PENS)</Title>
-      <Text>
+      <Text mt={8}>
         Dalam dunia pendidikan, perpustakaan adalah salah satu fasilitas
         pendukung yang paling penting. Perpustakaan adalah sumber ilmu, tempat
         mencari informasi, tempat belajar ataupun penelitian. Perpustakaan
@@ -35,10 +24,23 @@ const Home: FC = () => {
         mengajar. Perpustakaan PENS sendiri bertempat di dalam area PENS.
       </Text>
 
-      {books.map((item, i) => {
-        return <BookListItem key={i} item={item} />
-      })}
-    </Group>
+      {bookKeyword !== '' && (
+        <Title mt={5} order={4}>
+          Hasil Pencarian dari {`'${bookKeyword}':`}
+        </Title>
+      )}
+      {books.length === 0 && (
+        <Title mt={2} order={3}>
+          ---Tidak ada data---
+        </Title>
+      )}
+
+      <Group spacing={40} mt={50}>
+        {books.map((item, i) => {
+          return <BookListItem key={i} item={item} />
+        })}
+      </Group>
+    </div>
   )
 }
 

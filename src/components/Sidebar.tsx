@@ -5,6 +5,7 @@ import {
   TbSwitchHorizontal,
   TbLogout,
   TbBook,
+  TbCalendarTime,
 } from 'react-icons/tb'
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom'
 import { LogoPens } from '@/assets'
@@ -90,6 +91,7 @@ const useStyles = createStyles((theme, _params, getRef) => {
 const data = [
   { link: '/admin/dashboard', label: 'Dashboard', icon: TbBellRinging },
   { link: '/admin/books', label: 'Buku', icon: TbBook },
+  { link: '/admin/activity', label: 'Jadwal Kegiatan', icon: TbCalendarTime },
 ]
 
 const SideBar: FC = () => {

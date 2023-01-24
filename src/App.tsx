@@ -20,6 +20,8 @@ import MainDashboard from '@/pages/admin/MainDashboard'
 import SideBar from '@/components/Sidebar'
 import BooksDashboard from '@/pages/admin/BooksDashboard'
 import EditBook from '@/pages/admin/EditBook'
+import ActivityDashboard from '@/pages/admin/ActivityDashboard'
+import AppContextProvider from '@/context'
 
 const useStyles = createStyles((t) => ({
   adminContentContainer: {
@@ -34,37 +36,46 @@ const App: FC = () => {
     <BrowserRouter>
       <MantineProvider withGlobalStyles withNormalizeCSS>
         <NotificationsProvider>
-          <Routes>
-            <Route path="/" element={<ClientContainer element={<Home />} />} />
-            <Route
-              path="/jadwal-kegiatan"
-              element={<ClientContainer element={<Activity />} />}
-            />
-            <Route
-              path="/profil"
-              element={<ClientContainer element={<Borrowing />} />}
-            />
-            <Route
-              path="/buku/:slug"
-              element={<ClientContainer element={<BookDetail />} />}
-            />
-            <Route
-              path="/admin/login"
-              element={<ClientContainer element={<Login />} />}
-            />
-            <Route
-              path="/admin/dashboard"
-              element={<AdminContainer element={<MainDashboard />} />}
-            />
-            <Route
-              path="/admin/books"
-              element={<AdminContainer element={<BooksDashboard />} />}
-            />
-            <Route
-              path="/admin/books/add"
-              element={<AdminContainer element={<EditBook />} />}
-            />
-          </Routes>
+          <AppContextProvider>
+            <Routes>
+              <Route
+                path="/"
+                element={<ClientContainer element={<Home />} />}
+              />
+              <Route
+                path="/jadwal-kegiatan"
+                element={<ClientContainer element={<Activity />} />}
+              />
+              <Route
+                path="/profil"
+                element={<ClientContainer element={<Borrowing />} />}
+              />
+              <Route
+                path="/buku/:slug"
+                element={<ClientContainer element={<BookDetail />} />}
+              />
+              <Route
+                path="/admin/login"
+                element={<ClientContainer element={<Login />} />}
+              />
+              <Route
+                path="/admin/dashboard"
+                element={<AdminContainer element={<MainDashboard />} />}
+              />
+              <Route
+                path="/admin/books"
+                element={<AdminContainer element={<BooksDashboard />} />}
+              />
+              <Route
+                path="/admin/books/add"
+                element={<AdminContainer element={<EditBook />} />}
+              />
+              <Route
+                path="/admin/activity"
+                element={<AdminContainer element={<ActivityDashboard />} />}
+              />
+            </Routes>
+          </AppContextProvider>
         </NotificationsProvider>
       </MantineProvider>
     </BrowserRouter>

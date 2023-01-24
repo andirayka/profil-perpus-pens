@@ -125,7 +125,6 @@ const Footer: FC<FooterProps> = ({ data }) => {
         className={classes.link}
         component="a"
         href={link.link}
-        onClick={(event) => event.preventDefault()}
       >
         {link.label}
       </Text>
@@ -149,7 +148,7 @@ const Footer: FC<FooterProps> = ({ data }) => {
           </Text>
 
           <Text>Jumlah pengujung hari ini</Text>
-          <Text>4</Text>
+          <Text>3</Text>
         </div>
         <div className={classes.groups}>{groups}</div>
       </Container>

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useContext, useState } from 'react'
 import {
   createStyles,
   Header,
@@ -8,12 +8,12 @@ import {
   Image,
   Autocomplete,
   Center,
-  MultiSelect,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Link, useMatch, useNavigate, useResolvedPath } from 'react-router-dom'
 import { LogoPens } from '@/assets'
 import { TbSearch } from 'react-icons/tb'
+import { BookContext } from '@/context/BookContext'
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -81,6 +81,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
   const [opened, { toggle }] = useDisclosure(false)
   const { classes, cx } = useStyles()
   const navigate = useNavigate()
+  const { getBooks } = useContext(BookContext)
   const [search, setSearch] = useState('')
 
   const onPressHome = (): void => {
@@ -103,12 +104,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
       </Link>
     )
   })
-  const data = [
-    { value: 'react', label: 'React' },
-    { value: 'svelte', label: 'Svelte' },
-    { value: 'vue', label: 'Vue' },
-    { value: 'Informatika', label: 'Informatika' },
-  ]
+
   return (
     <Header height={60}>
       <Container className={classes.header}>
@@ -123,14 +119,15 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
             ml="lg"
             value={search}
             onChange={setSearch}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                void getBooks(search)
+              }
+            }}
             style={{ width: 400 }}
             placeholder="Cari nama buku atau pengarang"
             icon={<TbSearch size={16} />}
-            data={
-              search.length > 0
-                ? ['React', 'Angular', 'Svelte', 'Vue', 'Node Js']
-                : []
-            }
+            data={[]}
           />
           {/* <MultiSelect data={data} placeholder="Pilih Kategori" /> */}
         </Center>

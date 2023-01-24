@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import {
   createStyles,
   Table,
@@ -130,7 +130,7 @@ function sortData(
   )
 }
 
-const BooksDashboard = (): React.ReactElement => {
+const BooksDashboard: FC = () => {
   const [search, setSearch] = useState('')
   const [sortedData, setSortedData] = useState<RowData[]>([])
   const [sortBy, setSortBy] = useState<keyof RowData | null>(null)

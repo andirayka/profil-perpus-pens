@@ -29,7 +29,7 @@ const BookDetail: FC = () => {
     <>
       <Breadcrumbs>{items}</Breadcrumbs>
       <Group mt="lg">
-        <BookDetailCover image="https://picsum.photos/420/630" />
+        <BookDetailCover image="https://i.postimg.cc/L66K9jDn/13803342-5362840.jpg" />
         <BookDetailInfo data={item} />
       </Group>
     </>
